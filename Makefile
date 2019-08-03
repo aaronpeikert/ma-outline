@@ -1,6 +1,19 @@
+projekt := $(shell basename `git rev-parse --show-toplevel`)
+current_dir := $(shell pwd)
+
+ifeq ($(DOCKER),TRUE)
+	run:=sudo docker run -dp 8787:8787 -v $(current_dir):/home/rstudio $(projekt)
+	current_dir=/home/rstudio
+endif
+
 all: outline.pdf
+
+build: Dockerfile
+	sudo docker build -t $(projekt) .
+
 clean:
 	Ruby/clean.rb
 .PHONY: clean
+
 outline.pdf: outline.Rmd MA.bib
-	Rscript -e 'rmarkdown::render("$<")'
+	$(run) Rscript -e 'rmarkdown::render("$(current_dir)/$<")'
