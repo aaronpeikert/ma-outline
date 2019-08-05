@@ -2,7 +2,7 @@ projekt := $(shell basename `git rev-parse --show-toplevel`)
 current_dir := $(shell pwd)
 
 ifeq ($(DOCKER),TRUE)
-	run:=sudo docker run -dp 8787:8787 -v $(current_dir):/home/rstudio $(projekt)
+	run:=sudo docker run --rm -dp 8787:8787 -v $(current_dir):/home/rstudio $(projekt)
 	current_dir=/home/rstudio
 endif
 
