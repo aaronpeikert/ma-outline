@@ -13,6 +13,7 @@ build: Dockerfile
 
 clean:
 	Ruby/clean.rb
+	rm -rf kitematic
 .PHONY: clean
 
 outline.pdf: outline.Rmd MA.bib
