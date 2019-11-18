@@ -6,7 +6,6 @@ date: "`r Sys.Date()`"
 bibliography: MA.bib
 output: pdf_document
 linestretch: 1.5
-lang: de-DE
 fontsize: 11
 ---
 
